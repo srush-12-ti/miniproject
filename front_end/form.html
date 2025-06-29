@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Risk Prediction Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">SSTK Lab</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="form.html">Prediction Tool</a></li>
+              <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <header class="bg-black text-white py-3">
+      <div class="container">
+        <h1 class="text-center">Health Risk Prediction</h1>
+      </div>
+    </header>
+  
+    <section class="container mt-5">
+      <h2 class="text-center text-danger">Fill in the Details</h2>
+      <form id="prediction-form" class="mt-4">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="HighChol" class="form-label">High Cholesterol</label>
+            <select class="form-select" id="HighChol" name="HighChol" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="BMI" class="form-label">BMI Class</label>
+            <select class="form-select" id="BMI" name="BMI" required>
+              <option value="0">Underweight (BMI < 18.5)</option>
+              <option value="1">Healthy (18.5 <= BMI < 25)</option>
+              <option value="2">Overweight (25 <= BMI < 30)</option>
+              <option value="3">Obesity (BMI >= 30)</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Diabetes" class="form-label">Diabetes</label>
+            <select class="form-select" id="Diabetes" name="Diabetes" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="PhysActivity" class="form-label">Physical Activity</label>
+            <select class="form-select" id="PhysActivity" name="PhysActivity" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="HvyAlcoholConsump" class="form-label">Heavy Alcohol Consumption</label>
+            <select class="form-select" id="HvyAlcoholConsump" name="HvyAlcoholConsump" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="GenHlth" class="form-label">General Health</label>
+            <select class="form-select" id="GenHlth" name="GenHlth" required>
+              <option value="1">Excellent</option>
+              <option value="2">Very Good</option>
+              <option value="3">Good</option>
+              <option value="4">Fair</option>
+              <option value="5">Poor</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="MentHlth" class="form-label">Mental Health</label>
+            <select class="form-select" id="MentHlth" name="MentHlth" required>
+              <option value="0">0-5 days</option>
+              <option value="1">5-10 days</option>
+              <option value="2">10-15 days</option>
+              <option value="3">15-20 days</option>
+              <option value="4">20-25 days</option>
+              <option value="5">25-30 days</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="PhysHlth" class="form-label">Physical Health</label>
+            <select class="form-select" id="PhysHlth" name="PhysHlth" required>
+              <option value="0">0-5 days</option>
+              <option value="1">5-10 days</option>
+              <option value="2">10-15 days</option>
+              <option value="3">15-20 days</option>
+              <option value="4">20-25 days</option>
+              <option value="5">25-30 days</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="DiffWalk" class="form-label">Difficulty Walking</label>
+            <select class="form-select" id="DiffWalk" name="DiffWalk" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Sex" class="form-label">Sex</label>
+            <select class="form-select" id="Sex" name="Sex" required>
+              <option value="0">Female</option>
+              <option value="1">Male</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Education" class="form-label">Education Level</label>
+            <select class="form-select" id="Education" name="Education" required>
+              <option value="1">Never Attended School</option>
+              <option value="2">Elementary School</option>
+              <option value="3">Middle School</option>
+              <option value="4">High School Graduate</option>
+              <option value="5">Some College</option>
+              <option value="6">College Graduate</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Current_Smoker" class="form-label">Current Smoker</label>
+            <select class="form-select" id="Current_Smoker" name="Current_Smoker" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Income_Category" class="form-label">Income Category</label>
+            <select class="form-select" id="Income_Category" name="Income_Category" required>
+              <option value="1">Less than $10,000</option>
+              <option value="2">$10,000-$15,000</option>
+              <option value="3">$15,000-$20,000</option>
+              <option value="4">$20,000-$25,000</option>
+              <option value="5">$25,000 or more</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Age_Group" class="form-label">Age Group</label>
+            <select class="form-select" id="Age_Group" name="Age_Group" required>
+              <option value="1">18-24 years</option>
+              <option value="2">25-34 years</option>
+              <option value="3">35-44 years</option>
+              <option value="4">45-54 years</option>
+              <option value="5">55-64 years</option>
+              <option value="6">65 years or older</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="On_BP_Medication" class="form-label">On Blood Pressure Medication</label>
+            <select class="form-select" id="On_BP_Medication" name="On_BP_Medication" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Fruits_Veggies" class="form-label">Fruits & Vegetables Consumption</label>
+            <select class="form-select" id="Fruits_Veggies" name="Fruits_Veggies" required>
+              <option value="0">Consumes less than the recommended amount</option>
+              <option value="1">Consumes the recommended amount or more</option>
+            </select>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </div>
+      </form>
+  
+    <div id="result" class="text-center mt-4">
+      <!-- Prediction result will appear here -->
+    </div>
+  </section>
+
+  <footer class="bg-black text-white py-3 mt-5">
+    <div class="container text-center">
+      <p>&copy; 2025 SSTK Laboratory. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('prediction-form').addEventListener('submit', async (event) => {
+      // Get form data from the form
+      const formData = new FormData(event.target);
+      const data = Object.fromEntries(formData.entries());
+  
+      // Update with the correct Flask endpoint URL (port 8080)
+      const url = "http://127.0.0.1:8080/predict/"; // Flask app runs on port 8080 by default
+  
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+          credentials: 'include', // Ensures cookies are sent with the request for session persistence
+        });
+  
+        if (!response.ok) {
+          throw new Error('Prediction failed'); // Handle failed prediction
+        }
+  
+        // Handle the server's response
+        const result = await response.json();
+        document.getElementById('result').innerHTML = `
+          <h4 class="text-success">Prediction Result: ${result.prediction}</h4>
+        `;
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('result').innerHTML = `
+          <h4 class="text-danger">An error occurred. Please try again.</h4>
+        `;
+      }
+    });
+</script>
+
+</body>
+</html>
