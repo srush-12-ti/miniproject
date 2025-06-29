@@ -1,0 +1,93 @@
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware  # Correct import
+from pydantic import BaseModel
+import joblib
+import pandas as pd
+
+# Create the FastAPI app
+app = FastAPI()
+
+# Add CORS middleware to allow cross-origin requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins, or specify: ["http://localhost:3000"]
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods
+    allow_headers=["*"],  # Allows all headers
+)
+
+# Add session middleware with no expiration limit
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="your_secure_secret_key_here",  # Replace with a secure key
+    session_cookie="health_app_session",  # Name of the session cookie
+    max_age=3600,  # Keep the session alive for 1 hour
+)
+
+# Load the machine learning model
+model = joblib.load("./ensemble_model_binary_compressed_1.joblib")  # Replace with your model file name
+
+# Define the input data format
+class InputData(BaseModel):
+    HighChol: int  # 0 or 1
+    BMI: int       # 0 or 1
+    Diabetes: int  # 0 or 1
+    PhysActivity: int  # 0 or 1
+    HvyAlcoholConsump: int  # 0 or 1
+    GenHlth: int   # 1 to 5
+    MentHlth: int   # 0 to 5
+    PhysHlth: int  # 0 to 5
+    DiffWalk: int  # 0 or 1
+    Sex: int       # 0 or 1
+    Education: int # 1 to 6
+    Current_Smoker: int  # 0 or 1
+    Income_Category: int # 1 to 5
+    Age_Group: int       # 1 to 6
+    On_BP_Medication: int  # 0 or 1
+    Fruits_Veggies: int    # 0 or 1
+
+# Define the prediction endpoint
+@app.post("/predict/")
+def predict(data: InputData, request: Request):
+    try:
+        # Access the session
+        session = request.session
+
+        # Check if the session already exists for the client
+        if "user_id" not in session:
+            # Create a new session ID and initialize data storage
+            session["user_id"] = f"user_{id(session)}"
+            session["data"] = []
+
+        # Store the submitted data in the session
+        session["data"].append(data.dict())
+
+        # Convert input data into the format expected by the model
+        input_data = pd.DataFrame([{
+            'HighChol': data.HighChol,
+            'BMI': data.BMI,
+            'Diabetes': data.Diabetes,
+            'PhysActivity': data.PhysActivity,
+            'HvyAlcoholConsump': data.HvyAlcoholConsump,
+            'GenHlth': data.GenHlth,
+            'MentHlth': data.MentHlth,
+            'PhysHlth': data.PhysHlth,
+            'DiffWalk': data.DiffWalk,
+            'Sex': data.Sex,
+            'Education': data.Education,
+            'Current_Smoker': data.Current_Smoker,
+            'Income_Category': data.Income_Category,
+            'Age_Group': data.Age_Group,
+            'On_BP_Medication': data.On_BP_Medication,
+            'Fruits_Veggies': data.Fruits_Veggies,
+        }])
+        
+        # Perform prediction
+        prediction = model.predict(input_data)
+
+        # Return prediction along with session details
+        return {"prediction": float(prediction[0])}
+    
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Prediction failed: {str(e)}")

@@ -1,0 +1,5 @@
+cd C:\Users\srush\OneDrive\Desktop\mini_project\Websiteeeegayt\back_end
+
+
+"C:\Users\srush\anaconda3\envs\mini_project\python.exe" app.py
+
