@@ -1,0 +1,11 @@
+# Ignore Python and system files
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+.env
+.DS_Store
+
+# Ignore model and dataset files (optional)
+models/
+data/
+outputs/
